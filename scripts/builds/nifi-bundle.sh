@@ -12,10 +12,10 @@ echo "Building the trucking-nifi-bundle project"
 sbt nifiBundle/compile
 
 echo "Installing the NiFi nar to NiFi.  NiFi will be restarted"
-scp -f $projDir/trucking-nifi-bundle/nifi-trucking-nar/target/nifi-trucking-nar-$projVer.nar gcs-nifi-c02n01.local.griffin-nc.com:/usr/hdf/nifi/lib
-scp -f $projDir/trucking-nifi-bundle/nifi-trucking-nar/target/nifi-trucking-nar-$projVer.nar gcs-nifi-c02n02.local.griffin-nc.com:/usr/hdf/nifi/lib
-scp -f $projDir/trucking-nifi-bundle/nifi-trucking-nar/target/nifi-trucking-nar-$projVer.nar gcs-nifi-c02n03.local.griffin-nc.com:/usr/hdf/nifi/lib
-scp -f $projDir/trucking-nifi-bundle/nifi-trucking-nar/target/nifi-trucking-nar-$projVer.nar gcs-nifi-c02n04.local.griffin-nc.com:/usr/hdf/nifi/lib
+scp -f $projDir/trucking-nifi-bundle/nifi-trucking-nar/target/nifi-trucking-nar-$projVer.nar gcs-nifi-c02n01.local.griffin-nc.com:/usr/hdf/current/nifi/lib
+scp -f $projDir/trucking-nifi-bundle/nifi-trucking-nar/target/nifi-trucking-nar-$projVer.nar gcs-nifi-c02n02.local.griffin-nc.com:/usr/hdf/current/nifi/lib
+scp -f $projDir/trucking-nifi-bundle/nifi-trucking-nar/target/nifi-trucking-nar-$projVer.nar gcs-nifi-c02n03.local.griffin-nc.com:/usr/hdf/current/nifi/lib
+scp -f $projDir/trucking-nifi-bundle/nifi-trucking-nar/target/nifi-trucking-nar-$projVer.nar gcs-nifi-c02n04.local.griffin-nc.com:/usr/hdf/current/nifi/lib
 
 echo "Restarting NiFi via Ambari"
 curl -u admin:admin -H 'X-Requested-By: ambari' -X PUT -d '{"RequestInfo": {"context": "Stop NIFi"}, "ServiceInfo": {"state": "INSTALLED"}}' http://gcs-ambari-c02n01.local.griffin-nc.com:8080/api/v1/clusters/gcscluster02/services/NIFI | python $projDir/scripts/wait-until-done.py
