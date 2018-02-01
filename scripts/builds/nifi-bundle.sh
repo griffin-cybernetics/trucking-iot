@@ -6,7 +6,7 @@ cd $projDir
 
 # Variables
 projVer=$(cat version.sbt | grep '".*"' -o | sed 's/"//g')
-nifiLibDir=$(find / -type d -path "/usr/*/nifi/lib" -print -quit 2> /dev/null)
+#nifiLibDir=$(find / -type d -path "/usr/*/nifi/lib" -print -quit 2> /dev/null)
 
 echo "Building the trucking-nifi-bundle project"
 sbt nifiBundle/compile
